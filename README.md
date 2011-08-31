@@ -39,6 +39,6 @@ You can specify an array of blacklisted nodes in <code>hwseo.ini</code>, which w
 Installation
 ------------
 
-Drop <code>extension/hwseo</code> to your extension directory. Then, activate the extension for your site/siteaccess. E.g. in <code>settings/override/site.ini.append.php</code>:
+Drop the code to <code>extension/hwseo</code>. Then, activate the extension for your site/siteaccess. E.g. in <code>settings/override/site.ini.append.php</code>:
 
     ActiveExtensions[]=hwseo
