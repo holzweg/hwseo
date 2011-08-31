@@ -24,7 +24,7 @@ However, you (and search engines) will be able to access the same page on all UR
 
 A common example is the default language switcher, which will redirect to the URL containing the alias from the current translation. If you are on the english page and you want to switch to the german siteaccess, the languageswitcher will generate the URL http://www.example.com/switchlanguage/to/en/career which will redirect you to http://de.example.com/career.
 
-The <code>hwseoredirect</code> operator takes checks if the current node is using the correct translation of the URL alias and redirects to the translated one in case of another translation (will send a 301 response to redirect to http://de.example.com/karriere in the example above).
+The <code>hwseoredirect</code> operator checks if the current node is using the correct translation of the URL alias and redirects to the translated one in case of another translation (will send a 301 response to redirect to http://de.example.com/karriere in the example above).
 
 ### Usage
 
