@@ -12,7 +12,7 @@ Given you have a multilingual site (www.example.com) containing 3 siteaccesses (
     http://de.example.com      de
     http://admin.example.com   admin
 
-A translated page containing job posts will by default available on the following URLs:
+A translated page containing job posts will by default be available on the following URLs:
 
     http://www.example.com/career
     http://de.example.com/karriere
