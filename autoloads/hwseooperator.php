@@ -83,16 +83,29 @@ class HwSEOOperator
 
     public function hwSeoRedirect($pagedata)
     {
+        $requestUri = trim($_SERVER['REQUEST_URI']);
+
         // ignore POST requests
         if(isset($_POST) && count($_POST) > 0) {
             return '';
+        }
+
+        // ignore form actions
+        $blacklist = array(
+            '/content/action',
+            '/content/collectedinfo',
+        );
+
+        foreach($blacklist as $listItem) {
+            if(strpos($requestUri, $listItem) !== false) {
+                return '';
+            }
         }
 
         $blacklistedNodes = eZINI::instance('hwseo.ini')->variable('Nodes', 'BlacklistedNodes');
         if(isset($pagedata['node_id']) && !in_array($pagedata['node_id'], $blacklistedNodes)) {
             $node = eZContentObjectTreeNode::fetch($pagedata['node_id']);
             if($node instanceof eZContentObjectTreeNode) {
-                $requestUri = trim($_SERVER['REQUEST_URI']);
                 $paramString = '';
 
                 $pos = strpos($requestUri, '/(');
