@@ -83,6 +83,11 @@ class HwSEOOperator
 
     public function hwSeoRedirect($pagedata)
     {
+        // ignore POST requests
+        if(isset($_POST) && count($_POST) > 0) {
+            return '';
+        }
+
         $blacklistedNodes = eZINI::instance('hwseo.ini')->variable('Nodes', 'BlacklistedNodes');
         if(isset($pagedata['node_id']) && !in_array($pagedata['node_id'], $blacklistedNodes)) {
             $node = eZContentObjectTreeNode::fetch($pagedata['node_id']);
