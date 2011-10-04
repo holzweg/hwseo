@@ -88,13 +88,27 @@ class HwSEOOperator
             $node = eZContentObjectTreeNode::fetch($pagedata['node_id']);
             if($node instanceof eZContentObjectTreeNode) {
                 $requestUri = trim($_SERVER['REQUEST_URI']);
+                $paramString = '';
+
+                $pos = strpos($requestUri, '/(');
+                if($pos !== false) {
+                    $paramString = substr($requestUri, $pos);
+                    $requestUri = substr($requestUri, 0, $pos);
+                } else {
+                    $pos = strpos($requestUri, '?');
+                    if($pos !== false) {
+                        $paramString = substr($requestUri, $pos);
+                        $requestUri = substr($requestUri, 0, $pos);
+                    }
+                }
+
                 $urlAlias = trim('/' . $node->urlAlias());
 
                 if($requestUri !== $urlAlias) {
                     if(!headers_sent()) {
                         $schema = $_SERVER['SERVER_PORT'] == '443' ? 'https' : 'http';
                         $host = strlen($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : $_SERVER['SERVER_NAME'];
-                        $url = $schema . '://' . $host . $urlAlias;
+                        $url = $schema . '://' . $host . $urlAlias . $paramString;
 
                         header('HTTP/1.1 301 Moved Permanently');
                         header('Location: ' . $url);
